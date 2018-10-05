@@ -1,0 +1,306 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Nathalies spil</title>
+	<link rel="stylesheet" href="themes/themeroller_nat.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<script src="guessnumber.js"></script>
+
+	<style>
+.ui-footer {
+	position: absolute !important;
+	bottom: 0;
+	width: 100%;
+}
+.hidden {
+		display: none;
+	}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: #D7CFCF;
+}
+td {
+	border: 6px solid white;
+	width: 33.333%;
+	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+	text-align: center;
+	font-size: 5em;
+	vertical-align: middle;
+}
+/* https://spin.atomicobject.com/2015/07/14/css-responsive-square/ */
+td:after {
+	content: "";
+	display: block;
+	padding-bottom: 10%;
+}
+td:first-of-type {
+	border-left-color: transparent;
+	border-top-color: transparent;
+}
+td:nth-of-type(2) {
+	border-top-color: transparent;
+}
+td:nth-of-type(3) {
+	border-right-color: transparent;
+	border-top-color: transparent;
+}
+tr:nth-of-type(3) td {
+	border-bottom-color: transparent;
+}
+</style>
+</head>
+<body>
+	<div data-role="page" id="homepage">
+  <!-- jQuery mobile container -->
+  <div data-role="header">
+    <h1>Nathalies spil</h1>
+  </div>
+  <div role="main" class="ui-content"> <!-- main content container -->
+    <h2>Vælg et spil:</h2>
+    <p><a href="#spil1" data-role="button">Kryds og bolle</a></p>
+    <p><a href="#spil2" data-role="button" data-transition="slide">Gæt et tal</a></p>
+    <p><a href="quiz.html" data-role="button" data-transition="slide">Quiz</a></p>
+  </div>
+  <div data-role="footer">
+    <p> <i>Copyright Nathalies spil &copy; 2018</i> </p>
+  </div>
+</div>
+<!-- end homepage --> 
+<!-- start spil1 -->
+<div data-role="page" id="spil1">
+  <div data-role="header"> <a href="#homepage" data-transition="slide" data-direction="reverse">Hjem</a>
+    <h1>Nathalies spil</h1></div>
+  <div role="main" class="ui-content"> <!-- main content container -->
+    <h2> Kryds og bolle</h2>
+      <div class="row"> 
+    <!-- 2 columns, reordered on medium devices and up --> 
+    <!-- First column -->
+    <div class="col-lg-6 order-lg-2">
+      <table>
+        <tbody>
+          <tr>
+            <td id="1">&nbsp;</td>
+            <td id="2">&nbsp;</td>
+            <td id="3">&nbsp;</td>
+          </tr>
+          <tr>
+            <td id="4">&nbsp;</td>
+            <td id="5">&nbsp;</td>
+            <td id="6">&nbsp;</td>
+          </tr>
+          <tr>
+            <td id="7">&nbsp;</td>
+            <td id="8">&nbsp;</td>
+            <td id="9">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="msg" class="text-center alert alert-success" role="alert">Tryk på felterne for at spille!</div>
+      <button id="playAgain" class="mt-3 mb-3 p-3 btn btn-secondary hidden">Prøv igen!</button>
+    </div>
+    <!-- Second column -->
+    <div class="col-lg-6 order-lg-1">
+      <div class="text-center">2 Spiller</div>
+      <hr>
+      <p>Spiller 1 score: <span id="player1"></span></p>
+      <p>Spiller 2 score: <span id="player2"></span></p>
+      <p>Ulige: <span id="draw"></span></p>
+    </div>
+  </div>
+  </div>
+  <div data-role="footer" class="ui-footer">
+    <p> <i>Copyright Nathalies spil &copy; 2018</i> </p>
+  </div>
+</div>
+
+<!-- start spil2 -->
+<div data-role="page" id="spil2">
+  <div data-role="header"> <a href="#homepage" data-transition="slide" data-direction="reverse">Hjem</a>
+    <h1>Nathalies spil</h1></div>
+  <div role="main" class="ui-content"> <!-- main content container -->
+    <h2>Gæt et tal</h2>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 game-wrap">
+          <h4 class="text-center">Et tal mellem 1 og 100</h4>
+ <div class="col-md-12">
+    <div class="input-group">
+     <input type="text" class="form-control input-lg" id="enterNum" placeholder="Indtast tal">
+      <span class="input-group-btn">
+        <button class="btn btn-default btn-lg" id="enterBtn" type="button">Gæt</button>
+
+      </span>
+
+    </div><!-- /input-group -->
+      <small class="text-center">Bruger enter eller tilbage knappen.</small>
+     <h3 class="text-center gameStatusAlert"></h3>
+     <h3 class="attempts text-center"></h3>
+     <span class="pos-btn"> <button class="btn btn-round btn-lg" type="button" onClick="history.go(0)" >Start forfra</button></span>
+  </div><!-- /.col-lg-6 -->
+</div>
+
+        </div>
+  </div>
+  <div data-role="footer" class="ui-footer">
+    <p> <i>Copyright Nathalies spil &copy; 2018</i> </p>
+  </div>
+</div>
+
+
+
+<script>
+	// global game variables
+	var player, fields, fieldsPlayed, fieldsPlayer1, fieldsPlayer2, winningFields, msg, playButton;
+	// global statistics variables
+	var p1Stats, p2Stats, drawStats;
+	
+	player = 1;
+	// an array for all played fields
+	fieldsPlayed = [];
+	// arrays for each player
+	fieldsPlayer1 = [];
+	fieldsPlayer2 = [];
+	
+	// make all fields clickable
+	fields = document.getElementsByTagName('td');
+	
+	for(let i = 0; i < fields.length; i++  ){
+		fields[i].addEventListener('click', play);
+	}
+	
+	msg = document.getElementById('msg');
+	// Play again:
+	playButton = document.getElementById("playAgain");
+	playButton.addEventListener('click', playAgain);
+	
+	p1Stats = document.getElementById('player1');
+	p2Stats = document.getElementById('player2');
+	drawStats = document.getElementById('draw');
+	
+	function play(){
+		// game core mechanics, marking the fields
+		//console.log('play!');
+		if(fieldsPlayed.includes(this.id)){
+			alert('Field already taken!');
+		}
+		
+		if(player === 1 && !fieldsPlayed.includes(this.id)){
+		// this addresses the "owner" of the function, i.e. <td>
+		this.innerHTML = 'X';
+		this.style.color = 'white';
+		fieldsPlayer1.push(parseInt(this.id));
+		console.log('Player 1 played ' + fieldsPlayer1.toString());
+		player = 2;
+		} else if(player === 2 && !fieldsPlayed.includes(this.id)){
+			this.innerHTML = '0';
+			this.style.color = 'darkturquoise';
+			fieldsPlayer2.push(parseInt(this.id));
+			console.log('Player 2 played ' + fieldsPlayer2.toString());
+			player = 1;
+		}
+		// store field in array
+		fieldsPlayed.push(this.id);
+		//console.log(this.id + ' clicked!');
+		// checking for a winning combination
+		win();
+	}
+		
+	function win(){
+		// analyzing field choices, winning conditions, feedback
+		if(
+			// player 1 winners
+			fieldsPlayer1.includes(1) && fieldsPlayer1.includes(2) && fieldsPlayer1.includes(3) ||
+		  	fieldsPlayer1.includes(4) && fieldsPlayer1.includes(5) && fieldsPlayer1.includes(6) ||
+		  	fieldsPlayer1.includes(7) && fieldsPlayer1.includes(8) && fieldsPlayer1.includes(9) ||
+		  	fieldsPlayer1.includes(1) && fieldsPlayer1.includes(5) && fieldsPlayer1.includes(9) ||
+		  	fieldsPlayer1.includes(3) && fieldsPlayer1.includes(5) && fieldsPlayer1.includes(7)	||
+		  	fieldsPlayer1.includes(1) && fieldsPlayer1.includes(4) && fieldsPlayer1.includes(7) ||
+		  	fieldsPlayer1.includes(2) && fieldsPlayer1.includes(5) && fieldsPlayer1.includes(8) ||
+		  	fieldsPlayer1.includes(3) && fieldsPlayer1.includes(6) && fieldsPlayer1.includes(9)	
+		)
+			{
+			msg.innerHTML = "Spiller 1 vandt!";
+			// statistics update
+			let player1score = localStorage.getItem('player1'); // get the value from local storage
+			player1score++; // increment the value
+			localStorage.setItem('player1',player1score); // submit the value to local storage
+			
+			gameOver()
+		} else if (
+			// player 2 winners
+			fieldsPlayer2.includes(1) && fieldsPlayer2.includes(2) && fieldsPlayer2.includes(3) ||
+		  	fieldsPlayer2.includes(4) && fieldsPlayer2.includes(5) && fieldsPlayer2.includes(6) ||
+		  	fieldsPlayer2.includes(7) && fieldsPlayer2.includes(8) && fieldsPlayer2.includes(9) ||
+		  	fieldsPlayer2.includes(1) && fieldsPlayer2.includes(5) && fieldsPlayer2.includes(9) ||
+		  	fieldsPlayer2.includes(3) && fieldsPlayer2.includes(5) && fieldsPlayer2.includes(7) ||
+		  	fieldsPlayer2.includes(1) && fieldsPlayer2.includes(4) && fieldsPlayer2.includes(7) ||
+		  	fieldsPlayer2.includes(2) && fieldsPlayer2.includes(5) && fieldsPlayer2.includes(8) ||
+		  	fieldsPlayer2.includes(3) && fieldsPlayer2.includes(6) && fieldsPlayer2.includes(9)
+		)
+			{
+			msg.innerHTML = "Spiller 2 vandt!";
+			let player2score = localStorage.getItem('player2'); // get the value from local storage
+			player2score++; // increment the value
+			localStorage.setItem('player2',player2score); // submit the value to local storage
+			
+			gameOver()
+		} else if (
+			// game is a draw
+			fieldsPlayed.length === 9
+		)
+			{
+			msg.innerHTML = "Det er ulige!";
+			let drawscore = localStorage.getItem('draw'); // get the value from local storage
+			drawscore++; // increment the value
+			localStorage.setItem('draw', drawscore); // submit the value to local storage
+			
+			gameOver()
+		}
+	}
+
+	function gameOver(){
+		// ending the game
+		// removing ALL event listeners
+		gameStats();
+		 for (var i = 0; i < fields.length; i++) {
+			fields[i].removeEventListener('click', play); 
+		}
+		// activate the play again button, JS style (% jQuery)
+		playButton.classList.remove("hidden");
+	}
+	
+	function playAgain(){
+		// restart the game
+		window.location.reload(true);
+	}
+	
+	function gameStats(){
+		// game stats using local storage
+		
+		// preparing local storage
+		if(!localStorage.getItem('player1')){
+			localStorage.setItem('player1', 0);
+			localStorage.setItem('player2', 0);
+			localStorage.setItem('draw', 0);
+		}
+		// reading from local storage
+		let player1score = localStorage.getItem('player1');
+		let player2score = localStorage.getItem('player2');
+		let drawscore = localStorage.getItem('draw');
+		
+		// displaying the values from local storage
+		p1Stats.innerHTML = player1score;
+		p2Stats.innerHTML = player2score;
+		drawStats.innerHTML = drawscore;	
+	}
+	
+	// initializing game stats
+	gameStats();
+</script>
+
+</body>
+</html>
